@@ -16,9 +16,10 @@ Num = Union[int, str]
 @dataclass
 class AxialAnalysisConfiguration:
     radii: List[Num]
+    choice = True
 
 
-default_axial = AxialAnalysisConfiguration(radii=[3, "n"])
+default_axial = AxialAnalysisConfiguration(radii=[3,300,"n"])
 
 
 class SegmentAnalysisType(enum.Enum):
@@ -72,8 +73,10 @@ class Configuration:
     analysis: AnalysisConfiguration
 
 
-def configure(place: str, root_workdir: str = "./downloads/") -> Configuration:
-    operation_id = place.split(",")[0] + "-" + uuid4().hex[:8]
+def configure(place: str, root_workdir: str = "/results/") -> Configuration:
+    #operation_id = place.split(",")[0] + "-" + uuid4().hex[:8]
+    #operation_id = place.split(",")[0]
+    operation_id = (place.split('/')[-1]).split('.')[0]
     workdir = create_workdir(f"{root_workdir}/{operation_id}")
     log = configure_logger(workdir)
     return Configuration(

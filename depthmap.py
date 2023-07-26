@@ -75,7 +75,7 @@ async def axial(
     )
     axial_analysis_file = f"{base_file}-axial-analysis.graph"
     await run(
-        f"{depthmapx.executable} -m AXIAL -f {axial_map_file} -o {axial_analysis_file} -p -xa {','.join(str(radius) for radius in config.radii)}",
+        f"{depthmapx.executable} -m AXIAL -f {axial_map_file} -o {axial_analysis_file} -p -xa n -xac {','.join(str(radius) for radius in config.radii)}",
         "Performing axial analysis",
     )
     axial_shapefile_mif = f"{base_file}.axial.mif"
@@ -98,7 +98,7 @@ async def segment(
     )
     segment_analysis_file = f"{base_file}-segment-analysis.graph"
     await run(
-        f"{depthmapx.executable} -m SEGMENT -f {segment_map_file} -o {segment_analysis_file} -p  -st {config.type.value} -srt {config.radius_type.value} -stb {config.tulip_bins} -sr {','.join(str(radius) for radius in config.radii)}",
+        f"{depthmapx.executable} -m SEGMENT -f {segment_map_file} -o {segment_analysis_file} -p  -st {config.type.value} -srt {config.radius_type.value} -sic n -stb {config.tulip_bins} -sr {','.join(str(radius) for radius in config.radii)}",
         "Performing segment analysis",
     )
     segment_shapefile_mif = f"{base_file}.segment.mif"

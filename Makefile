@@ -32,7 +32,5 @@ run-docker:
 
 debug-docker:
 	docker run --network=host --rm -v "${PWD}"/workdir:/home/app/downloads -it --entrypoint /bin/bash  ${TAG}
-
 clean:
 	rm -rf downloads/
-

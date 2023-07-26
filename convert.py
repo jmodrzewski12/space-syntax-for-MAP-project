@@ -21,6 +21,9 @@ def osm_to_dxf(osm_folder: str, destination=None) -> str:
     log.info(f"Converting {osm_folder} to {dxf_file}")
     # if the file is not specified linux defaults to nodes.shp
     data = gpd.read_file(path.join(osm_folder, "edges.shp"))
+    utm_crs = data.estimate_utm_crs()
+    data = data.to_crs(utm_crs)
+    log.info(f"CRS:  {utm_crs}")
     data.geometry.to_file(dxf_file, driver="DXF")
     return dxf_file
 

@@ -49,5 +49,4 @@ COPY requirements.txt /home/app
 RUN pip install -r requirements.txt
 COPY *.py /home/app/
 
-
 ENTRYPOINT [ "python","-m","main" ]
